@@ -82,6 +82,7 @@ class Browser
         $photos    = [];
         $download  = null;
         $title     = null;
+        $date      = null;
 
         if (!file_exists($directory) || !is_dir($directory)) {
             return null;
@@ -95,6 +96,7 @@ class Browser
                     $photos[] = [
                         'name' => $entry,
                         'path' => $path . '/' . $entry,
+                        'exif' => exif_read_data($directory . '/' . $entry),
                     ];
                 }
 

@@ -15,7 +15,10 @@
                     </a>
                 {% endif %}
 
-                <h1>{{ event.title }}</h1>
+                <h1>
+                    {{ event.title }}
+                    <small>{{ (event.photos|first).exif.DateTime|date('d/m/Y') }}</small>
+                </h1>
             </div>
         </div>
     </header>
