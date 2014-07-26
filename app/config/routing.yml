@@ -1,0 +1,5 @@
+family_photo:
+    resource: "@FamilyPhotoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

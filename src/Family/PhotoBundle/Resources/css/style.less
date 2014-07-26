@@ -1,0 +1,51 @@
+@import url(http://fonts.googleapis.com/css?family=Crete+Round);
+
+body {
+    font-family: 'Crete Round';
+    padding: 0;
+}
+
+header {
+    background: #F2F2F2;
+    width: 100%;
+
+    .page-header {
+        border-bottom: none;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+.photo {
+    display: block;
+    margin: @grid-gutter-width 0;
+}
+
+.back {
+    .btn();
+    .btn-link();
+    .btn-lg();
+    .pull-left();
+    .glyphicon();
+    .glyphicon-chevron-left();
+    .opacity(0.3);
+
+    &:hover {
+        .opacity(1);
+        text-decoration: none;
+        color: @headings-color;
+    }
+}
+
+.download {
+    .btn();
+    .btn-link();
+    .btn-lg();
+    .pull-right();
+
+    .glyphicon {
+        top: 3px;
+    }
+}

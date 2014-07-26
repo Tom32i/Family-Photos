@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block meta_title 'Famille Jarrand' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="page-header">Famille Jarrand</h1>
+
+        {% for event in events %}
+            <a href="{{ path('event', {name: event.name}) }}">
+                {{ event.title }}
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/main.css') }}" />
+{% endblock %}
