@@ -62,6 +62,8 @@ class Browser
             closedir($handle);
         }
 
+        usort($events, [$this, 'sortByDate']);
+
         return $events;
     }
 
@@ -90,14 +92,18 @@ class Browser
             while (false !== ($entry = readdir($handle))) {
 
                 if (preg_match('#^.*\.(jpg|jpeg|png|gif)$#i', $entry)) {
+
+                    $exif = exif_read_data($directory . '/' . $entry);
+
                     $photos[] = [
                         'name' => $entry,
                         'path' => $path . '/' . $entry,
-                        'exif' => exif_read_data($directory . '/' . $entry),
+                        'exif' => $exif,
+                        'date' => $exif ? $exif['DateTime'] : null,
                     ];
 
                     if (!$date) {
-                        $date = $photos[count($photos)-1]['exif']['DateTime'];
+                        $date = $photos[count($photos)-1]['date'];
                     }
                 }
 
@@ -116,6 +122,8 @@ class Browser
             closedir($handle);
         }
 
+        usort($photos, [$this, 'sortByDateAsc']);
+
         return [
             'name'     => $name,
             'title'    => $title,
@@ -123,5 +131,31 @@ class Browser
             'photos'   => $photos,
             'download' => $download,
         ];
+    }
+
+    /**
+     * Sort by date
+     *
+     * @param array $a
+     * @param array $b
+     *
+     * @return int
+     */
+    protected function sortByDate($a, $b)
+    {
+        return $a['date'] == $b['date'] ? 0 : ($a['date'] > $b['date'] ? -1 : 1);
+    }
+
+    /**
+     * Sort by date
+     *
+     * @param array $a
+     * @param array $b
+     *
+     * @return int
+     */
+    protected function sortByDateAsc($a, $b)
+    {
+        return $a['date'] == $b['date'] ? 0 : ($a['date'] > $b['date'] ? 1 : -1);
     }
 }
