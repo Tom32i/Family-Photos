@@ -7,18 +7,17 @@
         <div class="container">
             <div class="page-header">
                 <a href="{{ path('events') }}" title="Retour à la liste" class="back"></a>
-
                 {% if event.download %}
                     <a href="{{ asset(event.download.path) }}" class="download" title="Télécharger {{ event.download.name }}">
                         <span class="glyphicon glyphicon-download"></span>
-                        Télécharger les photos
+                        <span class="hidden-sm hidden-xs">Télécharger les photos</span>
                     </a>
                 {% endif %}
 
-                <h1>
-                    {{ event.title }}
-                    <small>{{ (event.photos|first).exif.DateTime|date('d/m/Y') }}</small>
-                </h1>
+                <div class="title">
+                    <h1>{{ event.title }}</h1>
+                    <h4 class="text-muted">{{ event.date|date('d/m/Y') }}</h4>
+                </div>
             </div>
         </div>
     </header>

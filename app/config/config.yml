@@ -67,3 +67,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+family_photo:
+    site_title: %site_title%

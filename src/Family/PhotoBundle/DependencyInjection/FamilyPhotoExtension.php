@@ -27,5 +27,6 @@ class FamilyPhotoExtension extends Extension
 
         $container->setParameter('family_photo.path', $config['path']);
         $container->setParameter('family_photo.web', $config['web']);
+        $container->setParameter('family_photo.title', $config['site_title']);
     }
 }

@@ -55,10 +55,7 @@ class Browser
                 $titlePath = $entryPath . '/' . '.title';
 
                 if (!preg_match('#^\.#i', $entry) && is_dir($entryPath)) {
-                    $events[] = [
-                        'title' => file_exists($titlePath) ? file_get_contents($titlePath) : $entry,
-                        'name'  => $entry,
-                    ];
+                    $events[] = $this->readEvent($entry);
                 }
             }
 
@@ -98,6 +95,10 @@ class Browser
                         'path' => $path . '/' . $entry,
                         'exif' => exif_read_data($directory . '/' . $entry),
                     ];
+
+                    if (!$date) {
+                        $date = $photos[count($photos)-1]['exif']['DateTime'];
+                    }
                 }
 
                 if (preg_match('#^.*\.zip$#i', $entry)) {
@@ -118,6 +119,7 @@ class Browser
         return [
             'name'     => $name,
             'title'    => $title,
+            'date'     => $date,
             'photos'   => $photos,
             'download' => $download,
         ];

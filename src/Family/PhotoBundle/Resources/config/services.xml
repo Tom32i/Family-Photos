@@ -6,12 +6,18 @@
 
     <parameters>
         <parameter key="family_photo.browser.class">Family\PhotoBundle\Service\Browser</parameter>
+        <parameter key="family_photo.twig.extension.class">Family\PhotoBundle\Twig\FamilyPhotoExtension</parameter>
     </parameters>
 
     <services>
         <service id="family_photo.browser" class="%family_photo.browser.class%">
             <argument>%family_photo.web%</argument>
             <argument>%family_photo.path%</argument>
+        </service>
+
+        <service id="twig.extension.family_photo_extension" class="%family_photo.twig.extension.class%">
+            <argument>%family_photo.title%</argument>
+            <tag name="twig.extension" />
         </service>
     </services>
 </container>

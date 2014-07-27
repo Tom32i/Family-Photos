@@ -22,6 +22,9 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('site_title')
+                    ->defaultValue('Family Photos')
+                ->end()
                 ->scalarNode('path')
                     ->defaultValue('photos')
                 ->end()
